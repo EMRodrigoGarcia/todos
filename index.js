@@ -17,6 +17,7 @@ const server = http.createServer(function (request, response) {
 
         request.on('close', () => {
             console.log("Se acabo");
+            console.log(qs.parse(body));
         });
 
     }else {
