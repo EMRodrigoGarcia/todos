@@ -26,7 +26,7 @@ const server = http.createServer(function (request, response) {
 })
 
 
-const port = process.env.PORT || 3000;
+const port = 3000;
 
 const host = "https://fabadalitoral-todos.zeet.app";
 try {
