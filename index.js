@@ -26,7 +26,7 @@ const server = http.createServer(function (request, response) {
 })
 
 
-const port = 6969;
+const port = 80;
 const host = "https://fabadalitoral-todos-6969.zeet.app";
 try {
     server.listen(port, host);
