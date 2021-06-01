@@ -30,8 +30,8 @@ const port = 6969;
 
 const host = "https://fabadalitoral-todos.zeet.app";
 try {
-    server.listen(port, host);
-//server.listen(host);
+//    server.listen(port, host);
+    server.listen(host);
 } catch (error) {
    console.log(error); 
 }
