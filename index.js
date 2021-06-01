@@ -17,7 +17,7 @@ const server = http.createServer(function (request, response) {
 
         request.on('close', () => {
             console.log("Se acabo");
-            console.log(qs.parse(body));
+            console.log(gd.parse(body));
         });
 
     }else {
@@ -28,7 +28,11 @@ const server = http.createServer(function (request, response) {
 
 const port = 6969;
 const host = "192.168.101.186" 
-server.listen(port, host);
+try {
+    server.listen(port, host);
+} catch (error) {
+   console.log(error); 
+}
 console.log("Escuchando en " + host + ":" + port);
 
 
