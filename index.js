@@ -23,6 +23,7 @@ function arrayToString(tokenStr) {
 
     return tokenList;
 }
+
 admin.initializeApp({
     credential: admin.credential.applicationDefault(),
     databaseURL: "https://todos-c9840-default-rtdb.europe-west1.firebasedatabase.app/"
@@ -34,9 +35,11 @@ var db = admin.database();
 const server = http.createServer(function (request, response) {
     if (request.method == "POST") {
         console.log("Algo por POST");
+        //var body = "";
         var body = [];
 
         request.on('data', function (data) {
+            // body.push(data);
             body.push(data);
         });
 
@@ -44,24 +47,22 @@ const server = http.createServer(function (request, response) {
             //TODO: Encontrar mejor manera de hacerlo...
             console.log("Se acabo");
             var tokenStr = Buffer.concat(body).toString();
+            
+            console.log(tokenStr);
+                // var message = {
+                //     notification: {
+                //         title: 'Un contacto ha tenido COVID-19',
+                //         body: 'Un contacto ha tenido COVID-19'
+                //     },
+                //     token: body
+                // };
 
-            arrayToString(tokenStr).forEach(element => {
-                var message = {
-                    notification: {
-                        title: 'Un contacto ha tenido COVID-19',
-                        body: 'Un contacto ha tenido COVID-19'
-                    },
-                    token: element
-                };
-
-                //TODO: Comprobar si el dato que nos estan pasando esta en BBDD
-                admin.messaging().send(message).then((res) => {
-                    console.log("De puta madre socio " + res);
-                }).catch((err) => {
-                    console.error("puta mierda " + err);
-                });
-
-            });
+                // //TODO: Comprobar si el dato que nos estan pasando esta en BBDD
+                // admin.messaging().send(message).then((res) => {
+                //     console.log("De puta madre socio " + res);
+                // }).catch((err) => {
+                //     console.error("puta mierda " + err);
+                // });
         }
         );
     } else {
