@@ -1,23 +1,23 @@
 //var admin = require('firebase-admin');
 const http = require('http');
 
+var gd = require('querystring');
+
 //https://stackoverflow.com/questions/4295782/how-to-process-post-data-in-node-js
 const server = http.createServer(function (request, response) {
     if (request.method == "POST") {
         console.log("Algo por POST");
-        var body = '';
+        var body = [];
 
         request.on('data', function (data) {
-            body += data;
-
-        });
-        request.on('data', data => {
             console.log(data);
+            body.push(data); 
+
         });
 
         request.on('close', () => {
             console.log("Se acabo");
-            console.log(gd.parse(body));
+            console.log(Buffer.concat(body).toString());
         });
 
     }else {
@@ -28,9 +28,8 @@ const server = http.createServer(function (request, response) {
 
 const port = 3000;
 
-const host = "https://fabadalitoral-todos.zeet.app";
+const host = "192.168.1.43";
 try {
-
     server.listen(port, host)
 } catch (error) {
    console.log(error); 
